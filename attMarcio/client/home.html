@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+</head>
+<body>
+    <h1>HOMEEE</h1>
+    <!-- Adicione um script que referencia o arquivo index.js -->
+    <script src="index.js"></script>
+</body>
+</html>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
+<script src="index.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDn6Nz-q--i5sl8lj1k3JuzOT4dpBERKxE",
+        authDomain: "atividade-marcio-8b0d7.firebaseapp.com",
+        projectId: "atividade-marcio-8b0d7",
+        storageBucket: "atividade-marcio-8b0d7.appspot.com",
+        messagingSenderId: "655008024326",
+        appId: "1:655008024326:web:818606a15022df4faec087",
+        measurementId: "G-NC7E2GQ2ZL"
+    };
+
+    // Inicializar o Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Verificar se o usuário está logado
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+        // Obter o token de autenticação
+        user.getIdToken().then(token => console.log(token))
+        
+    }
+});
+</script>

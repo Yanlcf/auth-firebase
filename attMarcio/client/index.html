@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Página de Login</title>
+    
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="#" method="post" class="login-form" id="login-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Entrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
+<script src="index.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDn6Nz-q--i5sl8lj1k3JuzOT4dpBERKxE",
+        authDomain: "atividade-marcio-8b0d7.firebaseapp.com",
+        projectId: "atividade-marcio-8b0d7",
+        storageBucket: "atividade-marcio-8b0d7.appspot.com",
+        messagingSenderId: "655008024326",
+        appId: "1:655008024326:web:818606a15022df4faec087",
+        measurementId: "G-NC7E2GQ2ZL"
+    };
+
+    // Inicializar o Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Capturar o formulário
+    const loginForm = document.getElementById("login-form");
+
+    // Lidar com a submissão do formulário
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Autenticar com email e senha
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Autenticação bem-sucedida
+                console.log("Usuário autenticado:", userCredential.user);
+                // Redirecionar para a página 'home.html'
+                window.location.href = 'home.html';
+            })
+            .catch((error) => {
+                // Autenticação falhou
+                alert(getError(error));
+                console.error("Erro de autenticação:", error);
+            });
+    });
+</script>
+</html>
