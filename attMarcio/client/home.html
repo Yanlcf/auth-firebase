@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>HOMEEE</h1>
-    <!-- Adicione um script que referencia o arquivo index.js -->
+    <h3>Seu token</h3>
+    <div class="token"></div>
     <script src="index.js"></script>
 </body>
 </html>
@@ -33,9 +34,10 @@
     // Verificar se o usuário está logado
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-
+        const tokenDiv = document.querySelector('.token');
+       
         // Obter o token de autenticação
-        user.getIdToken().then(token => console.log(token))
+        user.getIdToken().then(token => tokenDiv.innerHTML = token);
         
     }
 });
